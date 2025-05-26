@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout.html}">
+<head>
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <title>Shopping Cart - ShopEase</title>
+<!--    <link rel="stylesheet" href="../css/styles.css">-->
+<!--    <link rel="stylesheet" href="../css/cart.css">-->
+    <link rel="stylesheet" th:href="@{/css/cart.css}">
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">-->
+</head>
+<body>
+
+
+    <main layout:fragment="main-content">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <div class="container">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li>Shopping Cart</li>
+                </ul>
+            </div>
+        </div>
+    <!-- Cart Section -->
+    <section class="cart-section">
+        <div class="container">
+            <div class="section-header">
+                <h1>Shopping Cart</h1>
+                <p>Review and modify your items before checkout</p>
+            </div>
+
+            <div class="cart-container">
+                <!-- Cart Items -->
+                <div class="cart-items">
+                    <div class="cart-header">
+                        <div class="cart-header-product">Product</div>
+                        <div class="cart-header-price">Price</div>
+                        <div class="cart-header-quantity">Quantity</div>
+                        <div class="cart-header-subtotal">Subtotal</div>
+                        <div class="cart-header-action"></div>
+                    </div>
+
+                    <!-- Cart Item 1 -->
+                    <div class="cart-item">
+                        <div class="cart-item-product">
+                            <div class="cart-item-image">
+                                <img src="/placeholder.svg?height=100&width=100" alt="Wireless Headphones">
+                            </div>
+                            <div class="cart-item-details">
+                                <h3 class="cart-item-title">Premium Wireless Headphones</h3>
+                                <div class="cart-item-meta">
+                                    <span class="cart-item-sku">SKU: WH-1000XM4</span>
+                                    <span class="cart-item-color">Color: Black</span>
+                                </div>
+                                <div class="cart-item-availability in-stock">
+                                    <i class="fas fa-check-circle"></i> In Stock
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cart-item-price">$129.99</div>
+                        <div class="cart-item-quantity">
+                            <div class="quantity-selector">
+                                <button class="quantity-btn minus">-</button>
+                                <input type="number" value="1" min="1" max="10">
+                                <button class="quantity-btn plus">+</button>
+                            </div>
+                        </div>
+                        <div class="cart-item-subtotal">$129.99</div>
+                        <div class="cart-item-action">
+                            <button class="remove-item"><i class="fas fa-trash-alt"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Cart Item 2 -->
+                    <div class="cart-item">
+                        <div class="cart-item-product">
+                            <div class="cart-item-image">
+                                <img src="/placeholder.svg?height=100&width=100&text=Speaker" alt="Bluetooth Speaker">
+                            </div>
+                            <div class="cart-item-details">
+                                <h3 class="cart-item-title">Bluetooth Speaker</h3>
+                                <div class="cart-item-meta">
+                                    <span class="cart-item-sku">SKU: BS-2000</span>
+                                    <span class="cart-item-color">Color: Blue</span>
+                                </div>
+                                <div class="cart-item-availability in-stock">
+                                    <i class="fas fa-check-circle"></i> In Stock
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cart-item-price">$79.99</div>
+                        <div class="cart-item-quantity">
+                            <div class="quantity-selector">
+                                <button class="quantity-btn minus">-</button>
+                                <input type="number" value="1" min="1" max="10">
+                                <button class="quantity-btn plus">+</button>
+                            </div>
+                        </div>
+                        <div class="cart-item-subtotal">$79.99</div>
+                        <div class="cart-item-action">
+                            <button class="remove-item"><i class="fas fa-trash-alt"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Cart Item 3 -->
+                    <div class="cart-item">
+                        <div class="cart-item-product">
+                            <div class="cart-item-image">
+                                <img src="/placeholder.svg?height=100&width=100&text=Watch" alt="Smart Watch">
+                            </div>
+                            <div class="cart-item-details">
+                                <h3 class="cart-item-title">Smart Watch</h3>
+                                <div class="cart-item-meta">
+                                    <span class="cart-item-sku">SKU: SW-500</span>
+                                    <span class="cart-item-color">Color: Black</span>
+                                </div>
+                                <div class="cart-item-availability in-stock">
+                                    <i class="fas fa-check-circle"></i> In Stock
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cart-item-price">$199.99</div>
+                        <div class="cart-item-quantity">
+                            <div class="quantity-selector">
+                                <button class="quantity-btn minus">-</button>
+                                <input type="number" value="1" min="1" max="10">
+                                <button class="quantity-btn plus">+</button>
+                            </div>
+                        </div>
+                        <div class="cart-item-subtotal">$199.99</div>
+                        <div class="cart-item-action">
+                            <button class="remove-item"><i class="fas fa-trash-alt"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="cart-actions">
+                        <button class="btn btn-outline continue-shopping">
+                            <i class="fas fa-arrow-left"></i> Continue Shopping
+                        </button>
+                        <button class="btn btn-primary update-cart">
+                            <i class="fas fa-sync-alt"></i> Update Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Cart Summary -->
+                <div class="cart-summary">
+                    <h2>Order Summary</h2>
+                    
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span>$409.97</span>
+                    </div>
+                    
+                    <div class="summary-shipping">
+                        <h3>Shipping</h3>
+                        <div class="shipping-options">
+                            <label class="shipping-option">
+                                <input type="radio" name="shipping" value="free" checked>
+                                <span class="radio-checkmark"></span>
+                                <div class="shipping-option-details">
+                                    <span class="shipping-option-name">Standard Shipping</span>
+                                    <span class="shipping-option-price">Free</span>
+                                </div>
+                                <div class="shipping-option-description">
+                                    Delivery in 3-5 business days
+                                </div>
+                            </label>
+                            
+                            <label class="shipping-option">
+                                <input type="radio" name="shipping" value="express">
+                                <span class="radio-checkmark"></span>
+                                <div class="shipping-option-details">
+                                    <span class="shipping-option-name">Express Shipping</span>
+                                    <span class="shipping-option-price">$9.99</span>
+                                </div>
+                                <div class="shipping-option-description">
+                                    Delivery in 1-2 business days
+                                </div>
+                            </label>
+                            
+                            <label class="shipping-option">
+                                <input type="radio" name="shipping" value="next-day">
+                                <span class="radio-checkmark"></span>
+                                <div class="shipping-option-details">
+                                    <span class="shipping-option-name">Next Day Delivery</span>
+                                    <span class="shipping-option-price">$14.99</span>
+                                </div>
+                                <div class="shipping-option-description">
+                                    Order by 2pm for next business day
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="summary-row">
+                        <span>Tax</span>
+                        <span>$24.60</span>
+                    </div>
+                    
+                    <div class="coupon-code">
+                        <h3>Discount Code</h3>
+                        <div class="coupon-input">
+                            <input type="text" placeholder="Enter code">
+                            <button class="btn btn-outline btn-sm">Apply</button>
+                        </div>
+                    </div>
+                    
+                    <div class="summary-row total">
+                        <span>Total</span>
+                        <span>$434.57</span>
+                    </div>
+                    
+                    <button class="btn btn-primary btn-lg checkout-btn">
+                        Proceed to Checkout
+                    </button>
+                    
+                    <div class="secure-checkout">
+                        <i class="fas fa-lock"></i> Secure Checkout
+                    </div>
+                    
+                    <div class="payment-methods">
+                        <span>We Accept:</span>
+                        <div class="payment-icons">
+                            <i class="fab fa-cc-visa"></i>
+                            <i class="fab fa-cc-mastercard"></i>
+                            <i class="fab fa-cc-amex"></i>
+                            <i class="fab fa-cc-paypal"></i>
+                            <i class="fab fa-cc-apple-pay"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Empty Cart (Hidden by default) -->
+            <div class="empty-cart" style="display: none;">
+                <div class="empty-cart-content">
+                    <div class="empty-cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h2>Your cart is empty</h2>
+                    <p>Looks like you haven't added any items to your cart yet.</p>
+                    <a href="products.html" class="btn btn-primary">Start Shopping</a>
+                </div>
+            </div>
+
+            <!-- You May Also Like -->
+            <div class="you-may-like">
+                <div class="section-title">
+                    <h2>You May Also Like</h2>
+                    <p>Products you might be interested in</p>
+                </div>
+                <div class="products-row">
+                    <!-- Product 1 -->
+                    <div class="product-card">
+                        <div class="product-badge">New</div>
+                        <div class="product-image">
+                            <img src="/placeholder.svg?height=300&width=300&text=Earbuds" alt="Wireless Earbuds">
+                            <div class="product-actions">
+                                <button class="action-btn"><i class="fas fa-heart"></i></button>
+                                <button class="action-btn add-to-cart"><i class="fas fa-shopping-cart"></i></button>
+                                <button class="action-btn"><i class="fas fa-eye"></i></button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Wireless Earbuds</h3>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>(132)</span>
+                            </div>
+                            <div class="product-price">
+                                <span class="current-price">$99.99</span>
+                                <span class="old-price">$129.99</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 2 -->
+                    <div class="product-card">
+                        <div class="product-badge sale">Sale</div>
+                        <div class="product-image">
+                            <img src="/placeholder.svg?height=300&width=300&text=Tablet" alt="Tablet">
+                            <div class="product-actions">
+                                <button class="action-btn"><i class="fas fa-heart"></i></button>
+                                <button class="action-btn add-to-cart"><i class="fas fa-shopping-cart"></i></button>
+                                <button class="action-btn"><i class="fas fa-eye"></i></button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">10" Tablet</h3>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>(98)</span>
+                            </div>
+                            <div class="product-price">
+                                <span class="current-price">$299.99</span>
+                                <span class="old-price">$349.99</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 3 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="/placeholder.svg?height=300&width=300&text=Charger" alt="Wireless Charger">
+                            <div class="product-actions">
+                                <button class="action-btn"><i class="fas fa-heart"></i></button>
+                                <button class="action-btn add-to-cart"><i class="fas fa-shopping-cart"></i></button>
+                                <button class="action-btn"><i class="fas fa-eye"></i></button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Wireless Charger</h3>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span>(56)</span>
+                            </div>
+                            <div class="product-price">
+                                <span class="current-price">$39.99</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 4 -->
+                    <div class="product-card">
+                        <div class="product-badge">Bestseller</div>
+                        <div class="product-image">
+                            <img src="/placeholder.svg?height=300&width=300&text=Camera" alt="Digital Camera">
+                            <div class="product-actions">
+                                <button class="action-btn"><i class="fas fa-heart"></i></button>
+                                <button class="action-btn add-to-cart"><i class="fas fa-shopping-cart"></i></button>
+                                <button class="action-btn"><i class="fas fa-eye"></i></button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Digital Camera</h3>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>(215)</span>
+                            </div>
+                            <div class="product-price">
+                                <span class="current-price">$349.99</span>
+                                <span class="old-price">$399.99</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>Subscribe to Our Newsletter</h2>
+                <p>Get the latest updates on new products and upcoming sales</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    </main>
+
+
+    <!-- Mobile Menu (Hidden by default) -->
+<!--    <div class="mobile-menu">-->
+<!--        <div class="mobile-menu-header">-->
+<!--            <h3>Menu</h3>-->
+<!--            <button class="mobile-menu-close"><i class="fas fa-times"></i></button>-->
+<!--        </div>-->
+<!--        <nav class="mobile-nav">-->
+<!--            <ul>-->
+<!--                <li><a href="index.html">Home</a></li>-->
+<!--                <li><a href="products.html">Products</a></li>-->
+<!--                <li><a href="#">Deals</a></li>-->
+<!--                <li><a href="#">New Arrivals</a></li>-->
+<!--                <li><a href="#">Contact</a></li>-->
+<!--            </ul>-->
+<!--        </nav>-->
+<!--        <div class="mobile-menu-footer">-->
+<!--            <a href="#" class="btn btn-outline btn-block">Sign In</a>-->
+<!--            <a href="#" class="btn btn-primary btn-block">Register</a>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="overlay"></div>-->
+
+<!--    <script src="../js/script.js"></script>-->
+    <th:block layout:fragment="js">
+        <script th:src="@{/js.cart.js}"></script>
+    </th:block>
+<!--    <script src="../js/cart.js"></script>-->
+</body>
+</html>

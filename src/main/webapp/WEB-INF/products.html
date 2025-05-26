@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}">
+<head>
+    <title>All Products - ShopEase</title>
+    <link rel="stylesheet" th:href="@{/css/products.css}">
+</head>
+<body>
+
+
+<main layout:fragment="main-content">
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li>All Products</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Products Section -->
+    <section class="products-section">
+        <div class="container">
+            <div class="products-header">
+                <h1>All Products</h1>
+                <p>Showing 1-12 of 48 products</p>
+            </div>
+
+            <div class="products-container">
+                <!-- Filter Sidebar -->
+                <div class="filter-sidebar">
+
+                    <div class="filter-header">
+                        <h3>Filters</h3>
+                        <button class="btn btn-primary apply-filters">Apply Filters</button>
+                    </div>
+
+                    <!-- Categories Filter -->
+                    <div class="filter-group">
+                        <h4>Categories</h4>
+                        <div class="filter-options">
+                            <label class="filter-option">
+                                <input type="radio" name="categoryId" th:value="0">
+                                <span class="checkmark"></span>
+                                <span class="option-text">All</span>
+                                <span class="count">(24)</span>
+                            </label>
+                            <label class="filter-option" th:each="category:${categoryList}">
+                                <input type="radio" name="categoryId" th:value="${category.id}">
+                                <span class="checkmark"></span>
+                                <span class="option-text" th:text="${category.name}">Electronics</span>
+                                <span class="count" th:text="'('+ ${category.getNumProduct()}+ ')'">(24)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Brands Filter -->
+                    <div class="filter-group">
+                        <h4>Brands</h4>
+                        <div class="filter-options">
+                            <label class="filter-option">
+                                <input type="radio" name="brandId" th:value="0">
+                                <span class="checkmark"></span>
+                                <span class="option-text">All</span>
+                                <span class="count">(8)</span>
+                            </label>
+                            <label class="filter-option" th:each="brand:${brandList}">
+                                <input type="radio" name="brandId" th:value="${brand.id}">
+                                <span class="checkmark"></span>
+                                <span class="option-text" th:text="${brand.name}">Apple</span>
+                                <span class="count" th:text="'('+${brand.numProduct}+')'">(8)</span>
+                            </label>
+                        </div>
+                    </div>
+
+
+                    <!-- Rating Filter -->
+                    <div class="filter-group">
+                        <h4>Rating</h4>
+                        <div class="filter-options">
+                            <label class="filter-option">
+                                <input type="radio" name="rating" th:value="0">
+                                <span class="checkmark"></span>
+                                <span class="option-text">All</span>
+                                <span class="count">(8)</span>
+                            </label>
+                            <label class="filter-option" th:each="index: ${#numbers.sequence(5,1,-1)}">
+                                <input type="radio" name="rating" th:value="${index}">
+                                <span class="checkmark"></span>
+                                <span class="option-text">
+                                    <div class="stars">
+                                        <i class="fas fa-star" th:each="j:${#numbers.sequence(1,index,1)}"></i>
+                                        <i class="far fa-star" th:each="j : ${#numbers.sequence(1, 5 - index,1)}"></i>
+                                    </div>
+                                    <span class="count">(42)</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Price Range Filter -->
+                    <div class="filter-group">
+                        <h4>Price Range</h4>
+                        <div class="price-range">
+                            <div class="price-inputs">
+                                <div class="price-input">
+                                    <label for="min-price">Min</label>
+                                    <div class="input-wrapper">
+                                        <span class="currency">$</span>
+                                        <input type="number" id="min-price" value="0" min="0">
+                                    </div>
+                                </div>
+                                <div class="price-input">
+                                    <label for="max-price">Max</label>
+                                    <div class="input-wrapper">
+                                        <span class="currency">$</span>
+                                        <input type="number" id="max-price" value="1000" min="0">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="range-slider">
+                                <input type="range" min="0" max="1000" value="0" class="range-min">
+                                <input type="range" min="0" max="1000" value="1000" class="range-max">
+                                <div class="slider-track"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Products Content -->
+                <div class="products-content">
+                    <!-- Products Toolbar -->
+                    <div class="products-toolbar">
+                        <div class="filter-toggle">
+                            <button class="btn btn-outline btn-sm filter-btn">
+                                <i class="fas fa-filter"></i> Filter
+                            </button>
+                        </div>
+                        <div class="search-bar">
+                            <input type="text" placeholder="Search for products..." id="searchText">
+                            <button type="submit" id="search"><i class="fas fa-search"></i></button>
+                        </div>
+                        <div class="products-sorting">
+                            <label for="sort-by">Sort by:</label>
+                            <select id="sort-by" class="sort-select">
+                                <option>Default sorting</option>
+                                <option th:each="option:${SORT_OPTIONS}" th:value="${option.key}" th:text="${option.value}">Popularity</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Products Grid -->
+                    <div class="products-grid">
+                        <!-- Product 1 -->
+                        <div class="product-card" th:each="product : ${productList.list}">
+                            <div class="product-badge">New</div>
+                            <div class="product-image">
+                                <img th:src="@{/{path}(path=${product.mainImage},height=300,width=300)}"
+                                     alt="Wireless Headphones">
+                                <div class="product-actions">
+<!--                                    <button class="action-btn"><i class="fas fa-heart"></i></button>-->
+                                    <button class="action-btn add-to-cart"><i class="fas fa-shopping-cart"></i></button>
+                                    <a th:href="@{/products/{id}(id=${product.id})}"><button class="action-btn"><i class="fas fa-eye"></i></button></a>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Electronics</div>
+                                <h3 class="product-title" th:text="${product.name}">Wireless Headphones</h3>
+                                <div class="product-rating">
+                                    <i class="fas fa-star" th:each="index:${#numbers.sequence(1,product.rating,1)}"></i>
+                                    <i class="far fa-star" th:each="index : ${#numbers.sequence(1, 5 - product.rating,1)}"></i>
+                                </div>
+                                <div class="product-price">
+                                    <span class="current-price" th:text="'$' +${product.price}">$129.99</span>
+                                    <span class="old-price">$159.99</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="pagination">
+                        <a th:href="@{/products}" class="page" th:value="${productList.prevPage}">
+                            <button class="pagination-btn prev" th:disabled="${productList.prevPage==null}">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                        </a>
+                        <div class="pagination-numbers">
+                            <th:block th:if="${productList.totalPage}<=7">
+                                <a th:href="@{/products}" th:each="index:${#numbers.sequence(1,productList.totalPage,1)}" class="page" th:value="${index}">
+                                    <button class="pagination-number" th:classappend="${index==productList.curPage}?'active'" th:text="${index}">1</button>
+                                </a>
+                            </th:block>
+
+                            <th:block th:if="${productList.totalPage>=8}">
+                                <th:block th:if="${productList.curPage<=4}">
+                                    <a th:href="@{/products}" th:each="index:${#numbers.sequence(1,5)}" class="page" th:value="${index}">
+                                        <button class="pagination-number " th:classappend="${index==productList.curPage}?'active'" th:text="${index}">1</button>
+                                    </a>
+                                    <span class="pagination-ellipsis">...</span>
+                                    <a th:href="@{/products}" class="page" th:value="${productList.totalPage}">
+                                        <button class="pagination-number " th:classappend="${productList.totalPage==productList.curPage}?'active'" th:text="${productList.totalPage}">100</button>
+                                    </a>
+                                </th:block>
+
+                                <th:block th:if="${productList.curPage>=(productList.totalPage - 3)}">
+                                    <a th:href="@{/products}" class="page" th:value="1">
+                                        <button class="pagination-number" th:classappend="${1==productList.curPage}?'active'">1</button>
+                                    </a>
+                                    <span class="pagination-ellipsis">...</span>
+                                    <a th:href="@{/products}" th:each="index: ${#numbers.sequence(productList.totalPage - 4,productList.totalPage)}" class="page" th:value="${index}">
+                                        <button class="pagination-number" th:classappend="${index==productList.curPage}?'active'" th:text="${index}">1</button>
+                                    </a>
+                                </th:block>
+
+                                <th:block th:if="${productList.curPage >= 5 && productList.curPage <= (productList.totalPage - 4)}">
+                                    <a th:href="@{/products}" class="page" th:value="1">
+                                        <button class="pagination-number" th:classappend="${1==productList.curPage}?'active'">1</button>
+                                    </a>
+                                    <span class="pagination-ellipsis">...</span>
+                                    <a th:href="@{/products}" th:each="index:${#numbers.sequence(productList.curPage - 1,productList.curPage + 1)}" class="page" th:value="${index}">
+                                        <button class="pagination-number" th:classappend="${index==productList.curPage}?'active'" th:text="${index}">1</button>
+                                    </a>
+                                    <span class="pagination-ellipsis">...</span>
+                                    <a th:href="@{/products}" class="page" th:value="${productList.totalPage}">
+                                        <button class="pagination-number" th:classappend="${productList.totalPage==productList.curPage}?'active'" th:text="${productList.totalPage}">100</button>
+                                    </a>
+                                </th:block>
+
+                            </th:block>
+
+                        </div>
+                        <a th:href="@{/products}"  class="page" th:value="${productList.nextPage}">
+                            <button class="pagination-btn next" th:disabled="${productList.nextPage==null}">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>Subscribe to Our Newsletter</h2>
+                <p>Get the latest updates on new products and upcoming sales</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+
+<th:block layout:fragment="js">
+    <script th:src="@{/js/products.js}"></script>
+</th:block>
+</body>
+</html>

@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}">
+<head>
+    <!--    <meta charset="UTF-8">-->
+    <!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <title>My Orders - ShopEase</title>
+    <link rel="stylesheet" th:href="@{/css/account.css}">
+    <!--    <link rel="stylesheet" href="../css/styles.css">-->
+    <!--    <link rel="stylesheet" href="../css/account.css">-->
+    <!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">-->
+</head>
+<body>
+
+
+<main layout:fragment="main-content">
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="profile.html">My Account</a></li>
+                <li>Orders</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Account Section -->
+    <section class="account-section">
+        <div class="container">
+            <div class="account-container">
+                <!-- Account Sidebar -->
+                <div class="account-sidebar">
+                    <div class="user-info">
+                        <div class="user-avatar">
+                            <img src="/placeholder.svg?height=100&width=100&text=JD" alt="John Doe">
+                            <button class="change-avatar-btn">
+                                <i class="fas fa-camera"></i>
+                            </button>
+                        </div>
+                        <div class="user-details">
+                            <h3>John Doe</h3>
+                            <p>john.doe@example.com</p>
+                        </div>
+                    </div>
+                    <nav class="account-nav">
+                        <ul>
+                            <li><a href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
+                            <li><a href="orders.html" class="active"><i class="fas fa-shopping-bag"></i> Orders</a></li>
+                            <li><a href="#"><i class="fas fa-heart"></i> Wishlist</a></li>
+                            <li><a href="#"><i class="fas fa-map-marker-alt"></i> Addresses</a></li>
+                            <li><a href="#"><i class="fas fa-credit-card"></i> Payment Methods</a></li>
+                            <li><a href="#"><i class="fas fa-bell"></i> Notifications</a></li>
+                            <li><a href="#"><i class="fas fa-cog"></i> Account Settings</a></li>
+                            <li><a href="login.html" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <!-- Account Content -->
+                <div class="account-content">
+                    <div class="account-header">
+                        <h1>My Orders</h1>
+                        <p>View and track your order history</p>
+                    </div>
+
+                    <div class="orders-container">
+                        <div class="orders-toolbar">
+                            <div class="orders-search">
+                                <input type="text" placeholder="Search orders...">
+                                <button><i class="fas fa-search"></i></button>
+                            </div>
+                            <div class="orders-filter">
+                                <select>
+                                    <option value="all">All Orders</option>
+                                    <option value="processing">Processing</option>
+                                    <option value="shipped">Shipped</option>
+                                    <option value="delivered">Delivered</option>
+                                    <option value="cancelled">Cancelled</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="orders-list">
+                            <!-- Order 1 -->
+                            <div class="order-card">
+                                <div class="order-header">
+                                    <div class="order-info">
+                                        <div class="order-number">Order #ORD-2023-10-1234</div>
+                                        <div class="order-date">October 15, 2023</div>
+                                    </div>
+                                    <div class="order-status delivered">
+                                        <span class="status-dot"></span>
+                                        <span class="status-text">Delivered</span>
+                                    </div>
+                                </div>
+                                <div class="order-items">
+                                    <div class="order-item">
+                                        <div class="item-image">
+                                            <img src="/placeholder.svg?height=80&width=80" alt="Wireless Headphones">
+                                        </div>
+                                        <div class="item-details">
+                                            <h3 class="item-name">Premium Wireless Headphones</h3>
+                                            <div class="item-meta">
+                                                <span class="item-color">Black</span>
+                                                <span class="item-quantity">Qty: 1</span>
+                                            </div>
+                                        </div>
+                                        <div class="item-price">$129.99</div>
+                                    </div>
+                                    <div class="order-item">
+                                        <div class="item-image">
+                                            <img src="/placeholder.svg?height=80&width=80&text=Speaker"
+                                                 alt="Bluetooth Speaker">
+                                        </div>
+                                        <div class="item-details">
+                                            <h3 class="item-name">Bluetooth Speaker</h3>
+                                            <div class="item-meta">
+                                                <span class="item-color">Blue</span>
+                                                <span class="item-quantity">Qty: 1</span>
+                                            </div>
+                                        </div>
+                                        <div class="item-price">$79.99</div>
+                                    </div>
+                                </div>
+                                <div class="order-footer">
+                                    <div class="order-total">
+                                        <span>Total:</span>
+                                        <span class="total-amount">$209.98</span>
+                                    </div>
+                                    <div class="order-actions">
+                                        <button class="btn btn-outline btn-sm view-details"
+                                                data-order="ORD-2023-10-1234">
+                                            <i class="fas fa-eye"></i> View Details
+                                        </button>
+                                        <button class="btn btn-primary btn-sm">
+                                            <i class="fas fa-redo"></i> Buy Again
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Order 2 -->
+                            <div class="order-card">
+                                <div class="order-header">
+                                    <div class="order-info">
+                                        <div class="order-number">Order #ORD-2023-09-9876</div>
+                                        <div class="order-date">September 28, 2023</div>
+                                    </div>
+                                    <div class="order-status shipped">
+                                        <span class="status-dot"></span>
+                                        <span class="status-text">Shipped</span>
+                                    </div>
+                                </div>
+                                <div class="order-items">
+                                    <div class="order-item">
+                                        <div class="item-image">
+                                            <img src="/placeholder.svg?height=80&width=80&text=Watch" alt="Smart Watch">
+                                        </div>
+                                        <div class="item-details">
+                                            <h3 class="item-name">Smart Watch</h3>
+                                            <div class="item-meta">
+                                                <span class="item-color">Black</span>
+                                                <span class="item-quantity">Qty: 1</span>
+                                            </div>
+                                        </div>
+                                        <div class="item-price">$199.99</div>
+                                    </div>
+                                </div>
+                                <div class="order-footer">
+                                    <div class="order-total">
+                                        <span>Total:</span>
+                                        <span class="total-amount">$199.99</span>
+                                    </div>
+                                    <div class="order-actions">
+                                        <button class="btn btn-outline btn-sm view-details"
+                                                data-order="ORD-2023-09-9876">
+                                            <i class="fas fa-eye"></i> View Details
+                                        </button>
+                                        <button class="btn btn-primary btn-sm">
+                                            <i class="fas fa-redo"></i> Buy Again
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Order 3 -->
+                            <div class="order-card">
+                                <div class="order-header">
+                                    <div class="order-info">
+                                        <div class="order-number">Order #ORD-2023-08-5678</div>
+                                        <div class="order-date">August 15, 2023</div>
+                                    </div>
+                                    <div class="order-status delivered">
+                                        <span class="status-dot"></span>
+                                        <span class="status-text">Delivered</span>
+                                    </div>
+                                </div>
+                                <div class="order-items">
+                                    <div class="order-item">
+                                        <div class="item-image">
+                                            <img src="/placeholder.svg?height=80&width=80&text=Tablet" alt="Tablet">
+                                        </div>
+                                        <div class="item-details">
+                                            <h3 class="item-name">10" Tablet</h3>
+                                            <div class="item-meta">
+                                                <span class="item-color">Silver</span>
+                                                <span class="item-quantity">Qty: 1</span>
+                                            </div>
+                                        </div>
+                                        <div class="item-price">$299.99</div>
+                                    </div>
+                                    <div class="order-item">
+                                        <div class="item-image">
+                                            <img src="/placeholder.svg?height=80&width=80&text=Case" alt="Tablet Case">
+                                        </div>
+                                        <div class="item-details">
+                                            <h3 class="item-name">Tablet Case</h3>
+                                            <div class="item-meta">
+                                                <span class="item-color">Black</span>
+                                                <span class="item-quantity">Qty: 1</span>
+                                            </div>
+                                        </div>
+                                        <div class="item-price">$29.99</div>
+                                    </div>
+                                </div>
+                                <div class="order-footer">
+                                    <div class="order-total">
+                                        <span>Total:</span>
+                                        <span class="total-amount">$329.98</span>
+                                    </div>
+                                    <div class="order-actions">
+                                        <button class="btn btn-outline btn-sm view-details"
+                                                data-order="ORD-2023-08-5678">
+                                            <i class="fas fa-eye"></i> View Details
+                                        </button>
+                                        <button class="btn btn-primary btn-sm">
+                                            <i class="fas fa-redo"></i> Buy Again
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Order 4 -->
+                            <div class="order-card">
+                                <div class="order-header">
+                                    <div class="order-info">
+                                        <div class="order-number">Order #ORD-2023-07-4321</div>
+                                        <div class="order-date">July 5, 2023</div>
+                                    </div>
+                                    <div class="order-status cancelled">
+                                        <span class="status-dot"></span>
+                                        <span class="status-text">Cancelled</span>
+                                    </div>
+                                </div>
+                                <div class="order-items">
+                                    <div class="order-item">
+                                        <div class="item-image">
+                                            <img src="/placeholder.svg?height=80&width=80&text=Camera"
+                                                 alt="Digital Camera">
+                                        </div>
+                                        <div class="item-details">
+                                            <h3 class="item-name">Digital Camera</h3>
+                                            <div class="item-meta">
+                                                <span class="item-color">Black</span>
+                                                <span class="item-quantity">Qty: 1</span>
+                                            </div>
+                                        </div>
+                                        <div class="item-price">$349.99</div>
+                                    </div>
+                                </div>
+                                <div class="order-footer">
+                                    <div class="order-total">
+                                        <span>Total:</span>
+                                        <span class="total-amount">$349.99</span>
+                                    </div>
+                                    <div class="order-actions">
+                                        <button class="btn btn-outline btn-sm view-details"
+                                                data-order="ORD-2023-07-4321">
+                                            <i class="fas fa-eye"></i> View Details
+                                        </button>
+                                        <button class="btn btn-primary btn-sm">
+                                            <i class="fas fa-redo"></i> Buy Again
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="orders-pagination">
+                            <button class="pagination-btn prev" disabled>
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <div class="pagination-numbers">
+                                <button class="pagination-number active">1</button>
+                                <button class="pagination-number">2</button>
+                                <button class="pagination-number">3</button>
+                                <span class="pagination-ellipsis">...</span>
+                            </div>
+                            <button class="pagination-btn next">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Details Modal (Hidden by default) -->
+    <div class="modal" id="order-details-modal">
+        <div class="modal-content order-details-content">
+            <div class="modal-header">
+                <h2>Order Details</h2>
+                <button class="modal-close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="order-details">
+                    <div class="order-details-header">
+                        <div class="order-details-info">
+                            <div class="order-number">Order #ORD-2023-10-1234</div>
+                            <div class="order-date">Placed on October 15, 2023</div>
+                        </div>
+                        <div class="order-status delivered">
+                            <span class="status-dot"></span>
+                            <span class="status-text">Delivered</span>
+                        </div>
+                    </div>
+
+                    <div class="order-details-section">
+                        <h3>Order Status</h3>
+                        <div class="order-timeline">
+                            <div class="timeline-item completed">
+                                <div class="timeline-icon">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <div class="timeline-content">
+                                    <h4>Order Placed</h4>
+                                    <p>October 15, 2023 at 10:30 AM</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item completed">
+                                <div class="timeline-icon">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <div class="timeline-content">
+                                    <h4>Order Processed</h4>
+                                    <p>October 15, 2023 at 2:45 PM</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item completed">
+                                <div class="timeline-icon">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <div class="timeline-content">
+                                    <h4>Shipped</h4>
+                                    <p>October 16, 2023 at 9:15 AM</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item completed">
+                                <div class="timeline-icon">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <div class="timeline-content">
+                                    <h4>Delivered</h4>
+                                    <p>October 18, 2023 at 2:30 PM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="order-details-section">
+                        <h3>Items in Your Order</h3>
+                        <div class="order-items-list">
+                            <div class="order-item">
+                                <div class="item-image">
+                                    <img src="/placeholder.svg?height=80&width=80" alt="Wireless Headphones">
+                                </div>
+                                <div class="item-details">
+                                    <h4 class="item-name">Premium Wireless Headphones</h4>
+                                    <div class="item-meta">
+                                        <span class="item-color">Black</span>
+                                        <span class="item-sku">SKU: WH-1000XM4</span>
+                                    </div>
+                                </div>
+                                <div class="item-quantity">Qty: 1</div>
+                                <div class="item-price">$129.99</div>
+                            </div>
+                            <div class="order-item">
+                                <div class="item-image">
+                                    <img src="/placeholder.svg?height=80&width=80&text=Speaker" alt="Bluetooth Speaker">
+                                </div>
+                                <div class="item-details">
+                                    <h4 class="item-name">Bluetooth Speaker</h4>
+                                    <div class="item-meta">
+                                        <span class="item-color">Blue</span>
+                                        <span class="item-sku">SKU: BS-2000</span>
+                                    </div>
+                                </div>
+                                <div class="item-quantity">Qty: 1</div>
+                                <div class="item-price">$79.99</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="order-details-columns">
+                        <div class="order-details-section">
+                            <h3>Shipping Address</h3>
+                            <div class="address-details">
+                                <p>John Doe</p>
+                                <p>123 Main Street</p>
+                                <p>Apt 4B</p>
+                                <p>New York, NY 10001</p>
+                                <p>United States</p>
+                                <p>Phone: +1 (555) 123-4567</p>
+                            </div>
+                        </div>
+
+                        <div class="order-details-section">
+                            <h3>Payment Information</h3>
+                            <div class="payment-details">
+                                <div class="payment-method">
+                                    <i class="fab fa-cc-visa"></i>
+                                    <span>Visa ending in 4567</span>
+                                </div>
+                                <div class="billing-address">
+                                    <p>John Doe</p>
+                                    <p>123 Main Street</p>
+                                    <p>Apt 4B</p>
+                                    <p>New York, NY 10001</p>
+                                    <p>United States</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="order-details-section">
+                        <h3>Order Summary</h3>
+                        <div class="order-summary">
+                            <div class="summary-row">
+                                <span>Subtotal</span>
+                                <span>$209.98</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Shipping</span>
+                                <span>Free</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Tax</span>
+                                <span>$12.60</span>
+                            </div>
+                            <div class="summary-row total">
+                                <span>Total</span>
+                                <span>$222.58</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline">
+                    <i class="fas fa-download"></i> Download Invoice
+                </button>
+                <button class="btn btn-primary">
+                    <i class="fas fa-redo"></i> Buy Again
+                </button>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<!-- Mobile Menu (Hidden by default) -->
+<!--    <div class="mobile-menu">-->
+<!--        <div class="mobile-menu-header">-->
+<!--            <h3>Menu</h3>-->
+<!--            <button class="mobile-menu-close"><i class="fas fa-times"></i></button>-->
+<!--        </div>-->
+<!--        <nav class="mobile-nav">-->
+<!--            <ul>-->
+<!--                <li><a href="index.html">Home</a></li>-->
+<!--                <li><a href="products.html">Products</a></li>-->
+<!--                <li><a href="#">Deals</a></li>-->
+<!--                <li><a href="#">New Arrivals</a></li>-->
+<!--                <li><a href="#">Contact</a></li>-->
+<!--            </ul>-->
+<!--        </nav>-->
+<!--        <div class="mobile-menu-footer">-->
+<!--            <a href="login.html" class="btn btn-outline btn-block">Sign In</a>-->
+<!--            <a href="register.html" class="btn btn-primary btn-block">Register</a>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="overlay"></div>-->
+
+<!--    <script src="../js/script.js"></script>-->
+<!--    <script src="../js/account.js"></script>-->
+<th:block layout:fragment="js">
+    <script th:src="@{/js/account.js}"></script>
+</th:block>
+</body>
+</html>
